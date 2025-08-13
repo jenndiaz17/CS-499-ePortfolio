@@ -1,0 +1,58 @@
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
+// Enhanced trip schema with validation and structure improvements
+const tripSchema = new Schema({
+  code: {
+    type: String,
+    required: true,
+    trim: true,
+    uppercase: true,
+    minlength: 3,
+    maxlength: 10,
+    index: true
+  },
+  name: {
+    type: String,
+    required: true,
+    trim: true,
+    minlength: 3,
+    maxlength: 100,
+    index: true
+  },
+  length: {
+    type: Number,
+    required: true,
+    min: 1
+  },
+  start: {
+    type: Date,
+    required: true
+  },
+  resort: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  perPerson: {
+    type: Number,
+    required: true,
+    min: 0
+  },
+  image: {
+    type: String,
+    trim: true,
+    match: /\.(jpg|jpeg|png|gif)$/i
+  },
+  description: {
+    type: String,
+    maxlength: 500
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
+});
+
+const Trip = mongoose.model('trips', tripSchema);
+module.exports = Trip;
