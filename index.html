@@ -12,6 +12,7 @@
       --card: #ffffff;
       --line: #e2e8f0;
       --accent: #2563eb;
+      --accent-2: #7c3aed;
     }
     * { box-sizing: border-box; }
     html, body {
@@ -22,44 +23,52 @@
       line-height: 1.6;
       background: var(--bg-gradient);
     }
-    .wrap {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 24px;
-    }
-    header {
-      text-align: center;
-      padding: 20px 0;
-    }
-    h1 {
-      margin: 0 0 6px;
-      font-size: 32px;
-      font-weight: 700;
-    }
-    .sub {
-      color: var(--muted);
-      font-size: 15px;
-    }
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-      margin: 18px 0 28px;
-    }
-    nav a {
-      text-decoration: none;
-      color: var(--ink);
-      padding: 8px 14px;
-      border-radius: 8px;
-      border: 1px solid var(--line);
-      background: var(--card);
-      transition: all 0.2s ease;
-    }
-    nav a:hover {
-      background: var(--accent);
+
+    /* ===== Gradient Header Bar ===== */
+    .hero {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
       color: #fff;
+      text-align: center;
+      padding: 28px 18px;
+      box-shadow: 0 10px 24px rgba(37,99,235,0.25);
+      position: sticky;
+      top: 0;
+      z-index: 20;
     }
+    .hero h1 {
+      margin: 0 0 6px;
+      font-size: 34px;
+      font-weight: 700;
+      letter-spacing: .2px;
+    }
+    .hero .sub {
+      margin: 0;
+      font-size: 15px;
+      opacity: .95;
+    }
+    .hero .nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .hero .nav a {
+      text-decoration: none;
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.35);
+      background: rgba(255,255,255,.12);
+      transition: all .18s ease;
+    }
+    .hero .nav a:hover {
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.22);
+    }
+
+    .wrap { max-width: 1000px; margin: 0 auto; padding: 24px; }
+
     .card {
       background: var(--card);
       border: 1px solid var(--line);
@@ -72,17 +81,21 @@
     h3 { margin: 6px 0; font-size: 20px; }
     p { margin: 8px 0; }
     ul, ol { margin: 8px 0 0 18px; }
+
     .btn {
       display: inline-block;
-      background: var(--accent);
+      background: #111827;
       color: #fff;
       text-decoration: none;
       padding: 8px 14px;
       border-radius: 10px;
       margin-top: 8px;
-      transition: background 0.2s ease;
+      border: 1px solid #0b1220;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.15);
     }
-    .btn:hover { background: #1e4fd6; }
+    .btn:hover { transform: translateY(-1px); background: #0b1220; }
+
     .link {
       display: inline-block;
       padding: 6px 10px;
@@ -93,60 +106,62 @@
       margin-right: 8px;
       margin-top: 4px;
       transition: all 0.2s ease;
+      background: #fff;
     }
     .link:hover {
       background: var(--accent);
       color: #fff;
+      border-color: var(--accent);
     }
+
+    .grid { display: grid; gap: 16px; }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media(max-width:760px) { .grid-2 { grid-template-columns: 1fr; } }
+
     footer {
       text-align: center;
       color: var(--muted);
       padding: 28px 0 40px;
       font-size: 14px;
     }
-    .grid {
-      display: grid;
-      gap: 16px;
-    }
-    .grid-2 {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-    @media(max-width:760px) {
-      .grid-2 { grid-template-columns: 1fr; }
-    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <h1>CS-499 ePortfolio</h1>
-      <div class="sub">Jeanelyn Roman · SNHU Computer Science Capstone</div>
-      <nav>
-        <a href="#self">Self-Assessment</a>
-        <a href="#code">Code Review</a>
-        <a href="#artifacts">Artifacts</a>
-        <a href="https://github.com/jenndiaz17/CS-499-ePortfolio" target="_blank" rel="noopener">GitHub Repository →</a>
-      </nav>
-    </header>
 
+  <!-- Gradient header bar with centered name -->
+  <header class="hero">
+    <h1>Jeanelyn Roman</h1>
+    <p class="sub">CS-499 ePortfolio · SNHU Computer Science Capstone</p>
+    <div class="nav">
+      <a href="#self">Self-Assessment</a>
+      <a href="#code">Code Review</a>
+      <a href="#artifacts">Artifacts</a>
+      <a href="https://github.com/jenndiaz17/CS-499-ePortfolio" target="_blank" rel="noopener">GitHub Repository →</a>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <!-- Self-Assessment -->
     <section id="self" class="card">
       <h2>Professional Self-Assessment</h2>
       <p>Hi, I’m Jeanelyn Roman and this portfolio wraps up my BS in Computer Science journey at SNHU. Over the past few years, I’ve sharpened my skills in software engineering, algorithms, databases, testing, and security — while learning how to clearly communicate and collaborate in a professional setting.</p>
       <p>Here you’ll find three enhanced artifacts, each showing growth in one of the core CS areas:</p>
       <ul>
-        <li><strong>Software Design & Engineering:</strong> CS-330 OpenGL 3D Scene — added Phong lighting, textures, and better scene structure.</li>
-        <li><strong>Algorithms & Data Structures:</strong> CS-320 Unit Testing — built stronger, data-driven test suites with wider coverage.</li>
+        <li><strong>Software Design &amp; Engineering:</strong> CS-330 OpenGL 3D Scene — added Phong lighting, textures, and better scene structure.</li>
+        <li><strong>Algorithms &amp; Data Structures:</strong> CS-320 Unit Testing — built stronger, data-driven test suites with wider coverage.</li>
         <li><strong>Databases:</strong> CS-465 Travlr API — improved schema design, input validation, and backend security.</li>
       </ul>
       <p>These projects highlight my ability to plan, build, and refine software that’s functional, secure, and maintainable.</p>
     </section>
 
+    <!-- Code Review -->
     <section id="code" class="card">
       <h2>Code Review</h2>
       <p>Here’s a walkthrough of my enhanced CS-330 OpenGL project — covering lighting, textures, and how I refactored the code to make it cleaner and more maintainable.</p>
-      <p><a class="btn" href="https://youtu.be/Jk13rmF-H1E" target="_blank" rel="noopener">Watch Code Review</a></p>
+      <p><a class="btn" href="https://youtu.be/Jk13rmF-H1E" target="_blank" rel="noopener">▶ Watch Code Review</a></p>
     </section>
 
+    <!-- Artifacts -->
     <section id="artifacts" class="card">
       <h2>Artifacts</h2>
       <div class="grid grid-2">
@@ -154,32 +169,32 @@
         <div class="card">
           <h3>Artifact 1 — CS-330 OpenGL</h3>
           <p>3D graphics project upgraded with realistic lighting, textures, and cleaner scene management.</p>
-          <a class="link" href="https://github.com/jenndiaz17/CS-499-ePortfolio/blob/main/MainCode%20Enhanced.cpp" target="_blank">Enhanced Code</a>
-          <a class="link" href="https://github.com/jenndiaz17/CS-499-ePortfolio/blob/main/MainCode.cpp" target="_blank">Original Code</a>
-          <a class="link" href="https://github.com/jenndiaz17/CS-499-ePortfolio/blob/main/CS-399Narrative.docx" target="_blank">Narrative</a>
+          <a class="link" href="https://github.com/jenndiaz17/CS-499-ePortfolio/blob/main/MainCode%20Enhanced.cpp" target="_blank" rel="noopener">Enhanced Code</a>
+          <a class="link" href="https://github.com/jenndiaz17/CS-499-ePortfolio/blob/main/MainCode.cpp" target="_blank" rel="noopener">Original Code</a>
+          <a class="link" href="https://github.com/jenndiaz17/CS-499-ePortfolio/blob/main/CS-399Narrative.docx" target="_blank" rel="noopener">Narrative</a>
         </div>
         <!-- Artifact 2 -->
         <div class="card">
           <h3>Artifact 2 — CS-465 Travlr API</h3>
           <p>Backend database model with improved validation, cleaner schema, and secure inputs.</p>
-          <a class="link" href="https://github.com/jenndiaz17/CS-499-ePortfolio/blob/main/travl.js_enhanced" target="_blank">Enhanced Code</a>
-          <a class="link" href="https://github.com/jenndiaz17/CS-499-ePortfolio/blob/main/travlr.js" target="_blank">Original Code</a>
-          <a class="link" href="https://github.com/jenndiaz17/CS-499-ePortfolio/blob/main/Milestone%20Three%20Enhancement%20Two.docx" target="_blank">Narrative</a>
+          <a class="link" href="https://github.com/jenndiaz17/CS-499-ePortfolio/blob/main/travl.js_enhanced" target="_blank" rel="noopener">Enhanced Code</a>
+          <a class="link" href="https://github.com/jenndiaz17/CS-499-ePortfolio/blob/main/travlr.js" target="_blank" rel="noopener">Original Code</a>
+          <a class="link" href="https://github.com/jenndiaz17/CS-499-ePortfolio/blob/main/Milestone%20Three%20Enhancement%20Two.docx" target="_blank" rel="noopener">Narrative</a>
         </div>
         <!-- Artifact 3 -->
         <div class="card">
           <h3>Artifact 3 — Appointment Service</h3>
           <p>Java service and unit test suite with stronger logic, negative cases, and broader test coverage.</p>
-          <a class="link" href="https://github.com/jenndiaz17/CS-499-ePortfolio/blob/main/AppointmentService_enhance.java" target="_blank">Enhanced Code</a>
-          <a class="link" href="https://github.com/jenndiaz17/CS-499-ePortfolio/blob/main/AppointmentServiceEnhanceTest.java" target="_blank">Enhanced Tests</a>
-          <a class="link" href="https://github.com/jenndiaz17/CS-499-ePortfolio/blob/main/AppointmentService.java" target="_blank">Original Code</a>
-          <a class="link" href="https://github.com/jenndiaz17/CS-499-ePortfolio/blob/main/AppointmentServiceTest.java" target="_blank">Original Tests</a>
-          <a class="link" href="https://github.com/jenndiaz17/CS-499-ePortfolio/blob/main/5-2%20Milestone%20Four%20Enhancement%20.docx" target="_blank">Narrative</a>
+          <a class="link" href="https://github.com/jenndiaz17/CS-499-ePortfolio/blob/main/AppointmentService_enhance.java" target="_blank" rel="noopener">Enhanced Code</a>
+          <a class="link" href="https://github.com/jenndiaz17/CS-499-ePortfolio/blob/main/AppointmentServiceEnhanceTest.java" target="_blank" rel="noopener">Enhanced Tests</a>
+          <a class="link" href="https://github.com/jenndiaz17/CS-499-ePortfolio/blob/main/AppointmentService.java" target="_blank" rel="noopener">Original Code</a>
+          <a class="link" href="https://github.com/jenndiaz17/CS-499-ePortfolio/blob/main/AppointmentServiceTest.java" target="_blank" rel="noopener">Original Tests</a>
+          <a class="link" href="https://github.com/jenndiaz17/CS-499-ePortfolio/blob/main/5-2%20Milestone%20Four%20Enhancement%20.docx" target="_blank" rel="noopener">Narrative</a>
         </div>
       </div>
     </section>
 
-    <footer>© Jeanelyn Roman · CS-499 ePortfolio</footer>
+    <footer>© 2025 Jeanelyn Roman · CS-499 ePortfolio</footer>
   </div>
 </body>
 </html>
